@@ -132,7 +132,7 @@ final class ClockView: NSView {
         NSBezierPath(ovalIn: NSRect(x: dotX - 4, y: dotY - 4, width: 8, height: 8)).fill()
         label("\(loops)", y: 127, size: 44, color: .white, weight: .medium)
         label(loops == 1 ? "LOOP COMPLETE" : "LOOPS COMPLETE", y: 108, size: 9, color: .white.withAlphaComponent(0.45), weight: .medium)
-        label(timeFormat.string(from: Date()), y: 73, size: 20, color: .white.withAlphaComponent(0.8))
+        label(timeFormat.string(from: Date()), y: 65, size: 32, color: .white, weight: .medium)
         if clock.paused { label("PAUSED", y: 182, size: 9, color: mint, weight: .medium) }
     }
 }
