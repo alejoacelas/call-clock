@@ -43,8 +43,15 @@ final class ClockView: NSView {
         configure(pauseButton, symbol: "pause.fill", tip: "Pause or resume", action: #selector(pause))
         configure(resetButton, symbol: "arrow.counterclockwise", tip: "Restart for a new call", action: #selector(reset))
         closeButton.frame = NSRect(x: 25, y: 205, width: 24, height: 24)
-        pauseButton.frame = NSRect(x: 91, y: 34, width: 26, height: 26)
-        resetButton.frame = NSRect(x: 125, y: 34, width: 26, height: 26)
+        pauseButton.frame = NSRect(x: 48, y: 12, width: 68, height: 54)
+        resetButton.frame = NSRect(x: 124, y: 12, width: 68, height: 54)
+        for button in [pauseButton, resetButton] {
+            button.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: 26, weight: .semibold)
+            button.contentTintColor = .white
+            button.wantsLayer = true
+            button.layer?.backgroundColor = NSColor(calibratedWhite: 0.22, alpha: 1).cgColor
+            button.layer?.cornerRadius = 14
+        }
         ticker = Timer(timeInterval: 0.1, repeats: true) { [weak self] _ in
             self?.needsDisplay = true
         }
