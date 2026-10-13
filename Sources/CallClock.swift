@@ -140,7 +140,7 @@ final class ClockView: NSView {
 final class AppDelegate: NSObject, NSApplicationDelegate {
     var panel: NSPanel!
     func applicationDidFinishLaunching(_ notification: Notification) {
-        panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 240, height: 244), styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
+        panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 120, height: 122), styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         panel.title = "Call Clock"
         panel.isOpaque = false
         panel.backgroundColor = .clear
@@ -149,11 +149,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         panel.isMovableByWindowBackground = true
         panel.hidesOnDeactivate = false
-        panel.contentView = ClockView(frame: NSRect(x: 0, y: 0, width: 240, height: 244))
+        let clockView = ClockView(frame: NSRect(x: 0, y: 0, width: 120, height: 122))
+        clockView.bounds = NSRect(x: 0, y: 0, width: 240, height: 244)
+        panel.contentView = clockView
         panel.setFrameAutosaveName("CallClockPosition")
         if !panel.setFrameUsingName("CallClockPosition"), let screen = NSScreen.main {
             panel.setFrameOrigin(NSPoint(x: screen.visibleFrame.maxX - 264, y: screen.visibleFrame.maxY - 268))
         }
+        panel.setContentSize(NSSize(width: 120, height: 122))
         panel.orderFrontRegardless()
     }
 }
